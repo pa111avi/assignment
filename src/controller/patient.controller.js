@@ -13,6 +13,8 @@ const welcomePage = (req, res) => {
 const createPatient = async (req, res ) => {
     try{
         const { name } = req.body;
+const patientName = await PatientModel.findOne({name})
+        if(!patientName){
         // console.log("request body -> ",req.body);
         const newPatient = new PatientModel(req.body);
         // console.log("new patient record -> ",newPatient);
@@ -25,6 +27,12 @@ const createPatient = async (req, res ) => {
             name : name ,
             message : "Your details are added successfully"
         })
+    }
+    else {
+        return res.render("patient",{
+            name : name
+        })
+    }
    
     }catch(err){
         return res.send(err)

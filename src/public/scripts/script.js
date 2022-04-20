@@ -28,8 +28,8 @@ window.onload = function(){
             }
         })
         .then(response => response.json())
-        .then(result => {
-            console.log(result);
+        .then((result) => {
+            if(result) console.log(result);
 
         })
         .catch(console.error)
